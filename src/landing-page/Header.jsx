@@ -25,6 +25,9 @@ const Header = () => {
       backdropFilter="blur(6px)"
       zIndex={1000}
       boxShadow="sm"
+      w="100%"
+      maxW="100vw"
+      overflowX="hidden"
     >
       <Box onClick={() => scrollToSection('home')} cursor="pointer">
         <img src={logo} alt='logo' style={{ height: '40px' }} />
