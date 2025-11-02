@@ -7,7 +7,7 @@ import linkedin from "../assets/icons/icons-linkedin.png"
 import whatsappIcon from "../assets/icons/icons-whatsapp.png"
 import { Link } from 'react-router-dom'
 
-const Footer = ({ phone = '07030572635', message = 'Hello! I would like to get in touch with you.' }) => {
+const Footer = ({ phone = '2347030572635', message = 'Hello! I would like to get in touch with you.' }) => {
     const currentYear = new Date().getFullYear();
     const handleClick = () => {
     const encodedMessage = encodeURIComponent(message);
