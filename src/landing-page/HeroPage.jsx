@@ -8,12 +8,15 @@ import {
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 import Header from './Header';
 import bgImage from '../assets/images/Background-img.png';
 import heroimage1 from "../assets/images/Phone1.png";
 import heroimage2 from "../assets/images/Phone2.png";
 import heroimage3 from "../assets/images/Phone3.png";
 import heroimage4 from "../assets/images/Phone4.png";
+
+const MotionImage = motion(Image);
 
 const HeroPage = () => {
   const slidesPerView = useBreakpointValue({ base: 1, md: 1, lg: 1 });
@@ -63,7 +66,7 @@ const HeroPage = () => {
       if (!isHoveringRef.current) {
         emblaApi.scrollNext();
       }
-    }, 2000);
+    }, 3000);
 
     return () => clearInterval(autoplayRef.current);
   }, [emblaApi]);
@@ -160,18 +163,30 @@ const HeroPage = () => {
                   </Button>
                 </Flex>
 
-                {/* Right Image Section */}
+                {/* Right Image Section with animation */}
                 <Flex
-                  justifyContent="center"
+                  justifyContent={['center', 'center', 'flex-end']}
                   alignItems="center"
                   width={['100%', '100%', '48%']}
+                  mt={['30px', '30px', '0']}
                 >
-                  <Image
+                  <MotionImage
                     src={content.image}
                     alt="Hero Image"
                     w={['250px', '300px', '400px', '480px']}
                     h="auto"
-                    objectFit="contain"
+                    fit="contain"
+                    mx="auto"
+                    alignSelf={'center'}
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{
+                      opacity: 1,
+                      y: [0, -10, 0],
+                    }}
+                    transition={{
+                      opacity: { duration: 0.8, ease: 'easeInOut' },
+                      y: { duration: 3, repeat: Infinity, ease: 'easeInOut' },
+                    }}
                   />
                 </Flex>
               </Flex>
@@ -180,8 +195,7 @@ const HeroPage = () => {
         </Flex>
       </Box>
 
-
-      {/* Pagination Dots Only */}
+      {/* Pagination Dots */}
       <Flex flexWrap={'wrap'} gap={[3, 2, 2]} my={5} justifyContent="center" alignItems={'center'}>
         {contentData.map((_, index) => (
           <Button
