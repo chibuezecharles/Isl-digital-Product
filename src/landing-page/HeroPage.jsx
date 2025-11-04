@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import Header from './Header';
-import bgImage from '../assets/images/Background-img.png';
+import bgImage from '../assets/images/bg4.png';
 import heroimage1 from "../assets/images/Phone1.png";
 import heroimage2 from "../assets/images/Phone2.png";
 import heroimage3 from "../assets/images/Phone3.png";
@@ -36,7 +36,7 @@ const HeroPage = () => {
       image: heroimage1,
       heading: "Get Your Dream Device. Pay Later, Stress-free.",
       description:
-        "Experience phone ownership made simple. With Intelligra, you can apply for financing, get approved, and receive your new device , all from your phone. Fast approval, doorstep delivery, and full insurance coverage.",
+        "Experience phone ownership made simple. With Intelligra, you can apply for financing, get approved, and receive your new device, all from your phone. Fast approval, doorstep delivery, and full insurance coverage.",
     },
     {
       id: 2,
@@ -54,7 +54,7 @@ const HeroPage = () => {
       id: 4,
       image: heroimage4,
       heading: "Receive data and airtime bonuses.",
-      description: "Mouth watering incentives just for you.",
+      description: "Mouth-watering incentives just for you.",
     },
   ];
 
@@ -86,9 +86,13 @@ const HeroPage = () => {
     <Box
       pt={['80px', '90px', '100px']}
       bgRepeat="no-repeat"
-      bgImage={`url(${bgImage})`}
+      bgImage={`linear-gradient(
+        rgba(11, 37, 69, 0.75),
+        rgba(11, 37, 69, 0.55)
+      ), url(${bgImage})`}
       bgSize="cover"
-      px={['15px','20px', '30px', '40px']}
+      bgPosition="center"
+      px={['15px', '20px', '30px', '40px']}
       position="relative"
       overflow="hidden"
       onMouseEnter={() => (isHoveringRef.current = true)}
@@ -130,11 +134,11 @@ const HeroPage = () => {
                   gap={5}
                   width={['100%', '100%', '52%']}
                   textAlign={['center', 'center', 'left']}
+                  color="brand.whiteColor"
                 >
                   <Text
                     fontWeight="700"
                     fontSize={['22px', '24px', '28px', '32px']}
-                    color="brand.textColor"
                   >
                     {content.heading.split(" ").slice(0, 3).join(" ")}{' '}
                     <Box as="span" color="brand.btnBgColor">
@@ -152,23 +156,26 @@ const HeroPage = () => {
                     {content.description}
                   </Text>
 
+                  {/* Desktop button */}
                   <Button
+                    display={['none', 'none', 'flex']}
                     width="200px"
                     bgColor="brand.btnBgColor"
                     color="brand.textColor"
                     size="lg"
-                    fontWeight={'500'}
+                    fontWeight="500"
                   >
                     Start my application
                   </Button>
                 </Flex>
 
-                {/* Right Image Section with animation */}
+                {/* Right Image Section */}
                 <Flex
                   justifyContent={['center', 'center', 'flex-end']}
                   alignItems="center"
                   width={['100%', '100%', '48%']}
                   mt={['30px', '30px', '0']}
+                  flexDir="column"
                 >
                   <MotionImage
                     src={content.image}
@@ -177,26 +184,49 @@ const HeroPage = () => {
                     h="auto"
                     fit="contain"
                     mx="auto"
-                    alignSelf={'center'}
+                    alignSelf="center"
                     initial={{ opacity: 0, y: 40 }}
                     animate={{
                       opacity: 1,
                       y: [0, -10, 0],
+                      scale: [1, 1.03, 1],
                     }}
                     transition={{
                       opacity: { duration: 0.8, ease: 'easeInOut' },
                       y: { duration: 3, repeat: Infinity, ease: 'easeInOut' },
+                      scale: { duration: 4, repeat: Infinity, ease: 'easeInOut' },
                     }}
+
                   />
+
+                  {/* Mobile button below image */}
+                  <Button
+                    display={['flex', 'flex', 'none']}
+                    width="200px"
+                    bgColor="brand.btnBgColor"
+                    color="brand.textColor"
+                    size="lg"
+                    fontWeight="500"
+                    mt={8}
+                  >
+                    Start my application
+                  </Button>
                 </Flex>
               </Flex>
+
             </Flex>
           ))}
         </Flex>
       </Box>
 
       {/* Pagination Dots */}
-      <Flex flexWrap={'wrap'} gap={[3, 2, 2]} my={5} justifyContent="center" alignItems={'center'}>
+      <Flex
+        flexWrap="wrap"
+        gap={[3, 2, 2]}
+        my={5}
+        justifyContent="center"
+        alignItems="center"
+      >
         {contentData.map((_, index) => (
           <Button
             key={index}
