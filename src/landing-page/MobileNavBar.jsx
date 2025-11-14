@@ -61,8 +61,8 @@ const MobileNavBar = ({ scrollToSection }) => {
               <Image
                 src={logo}
                 alt="logo"
-                width="100px"
-                height="100px"
+                width="80px"
+                height="80px"
                 objectFit="contain"
               />
               <CloseButton

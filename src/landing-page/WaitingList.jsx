@@ -6,15 +6,11 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
 const WaitingList = () => {
+  // Email-only validation
   const validationSchema = Yup.object().shape({
     contact: Yup.string()
-      .required("Please enter your email or phone number")
-      .test(
-        "emailOrPhone",
-        "Enter a valid email or phone number",
-        (value) =>
-          /^\S+@\S+\.\S+$/.test(value) || /^[0-9]{10,15}$/.test(value)
-      ),
+      .email("Enter a valid email address")
+      .required("Email is required"),
   });
 
   const handleSubmit = (values, { resetForm }) => {
@@ -53,7 +49,7 @@ const WaitingList = () => {
         fontSize={["14px", "15px", "16px"]}
       >
         Be the first to know when we launch new products and exclusive offers.
-        Enter your phone number or email to join the list.
+        Enter your email to join the list.
       </Text>
 
       <Formik
@@ -61,14 +57,7 @@ const WaitingList = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          values,
-          isSubmitting,
-        }) => (
+        {({ errors, touched, handleChange, handleBlur, values, isSubmitting }) => (
           <Form>
             <Flex
               justify="center"
@@ -78,14 +67,15 @@ const WaitingList = () => {
               maxW="600px"
               mx="auto"
             >
-              {/* Input wrapper with fixed height to prevent shifting */}
+              {/* Input wrapper */}
               <Box w="full" position="relative" minH="90px">
                 <Input
+                  type="email"
                   name="contact"
                   value={values.contact}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  placeholder="Enter your email or phone number"
+                  placeholder="Enter your email address"
                   bg="white"
                   color="brand.textColor"
                   border="1px solid"
@@ -108,20 +98,12 @@ const WaitingList = () => {
                   w={["100%", "100%", "400px"]}
                   py={6}
                   rounded="full"
-                  aria-invalid={
-                    errors.contact && touched.contact ? "true" : "false"
-                  }
-                  aria-describedby={
-                    errors.contact && touched.contact
-                      ? "contact-error"
-                      : undefined
-                  }
+                  aria-invalid={errors.contact && touched.contact ? "true" : "false"}
                 />
 
-                {/* Error message shown under the input */}
+                {/* Error message */}
                 {errors.contact && touched.contact && (
                   <Text
-                    id="contact-error"
                     mt={2}
                     color="red.500"
                     fontSize="sm"

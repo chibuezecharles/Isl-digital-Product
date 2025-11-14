@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import Header from './Header';
-import bgImage from '../assets/images/bg4.png';
+import bgImage from '../assets/images/bg4.jpg';
 import heroimage1 from "../assets/images/Phone1.png";
 import heroimage2 from "../assets/images/Phone2.png";
 import heroimage3 from "../assets/images/Phone3.png";

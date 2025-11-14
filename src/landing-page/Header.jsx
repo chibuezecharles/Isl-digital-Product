@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Flex, Text } from '@chakra-ui/react'
+import { Box, Flex, Image, Text } from '@chakra-ui/react'
 import logo from '../assets/images/isl-logo.png'
 import MobileNavBar from './MobileNavBar'
 
@@ -13,7 +13,7 @@ const Header = () => {
 
   return (
     <Flex
-      py={3}
+      // py={3}
       px={3}
       justifyContent='space-between'
       alignItems='center'
@@ -29,8 +29,19 @@ const Header = () => {
       maxW="100vw"
       overflowX="hidden"
     >
-      <Box onClick={() => scrollToSection('home')} cursor="pointer">
-        <img src={logo} alt='logo' style={{ height: '40px' }} />
+      <Box 
+        onClick={() => scrollToSection('home')} 
+        cursor="pointer" 
+        display="flex" 
+        alignItems="center"
+      >
+        <Image
+          src={logo}
+          alt="logo"
+          width="100px"
+          height="100px"
+          objectFit="contain"
+        />
       </Box>
 
       <Flex
