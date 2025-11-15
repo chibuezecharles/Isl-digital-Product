@@ -180,7 +180,7 @@ const HeroPage = () => {
                   <MotionImage
                     src={content.image}
                     alt="Hero Image"
-                    w={['250px', '300px', '400px']}
+                    w={['250px', '300px', '400px', '450px']}
                     h="auto"
                     fit="contain"
                     mx="auto"

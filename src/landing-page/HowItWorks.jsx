@@ -19,7 +19,7 @@ import {
   CheckIcon,
   TruckIcon,
 } from "lucide-react";
-import phoneImage from "../assets/images/PhoneImg.png";
+import phoneImage from "../assets/images/uniqueAdvantage1.png";
 
 // motion wrappers for Chakra v3
 const MotionBox = motion.create(chakra.div);

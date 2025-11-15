@@ -4,7 +4,7 @@ import { Box, Flex, VStack, Image, Text, Icon, chakra } from "@chakra-ui/react";
 import { FiPhoneCall, FiRefreshCw, FiTruck } from "react-icons/fi";
 import { MdScreenShare } from "react-icons/md";
 import { motion } from "framer-motion";
-import phoneImg from "../assets/images/PhoneImg2.png"; // your image path
+import phoneImg from "../assets/images/uniqueAdvantage2.png"; // your image path
 
 // Motion wrappers (Framer Motion + Chakra v3)
 const MotionBox = motion.create(chakra.div);
