@@ -4,6 +4,7 @@ import { Box, Button, Flex, Input, Text } from "@chakra-ui/react";
 import { toaster } from "@/components/ui/toaster";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import useDigitalProduct from "./hooks/useDigitalProduct";
 
 const WaitingList = () => {
   // Email-only validation
@@ -13,17 +14,49 @@ const WaitingList = () => {
       .required("Email is required"),
   });
 
-  const handleSubmit = (values, { resetForm }) => {
-    console.log("values", values);
-    toaster.create({
-      title: "Success!",
-      description: "You've joined the waiting list successfully.",
-      type: "success",
-      duration: 3000,
-      placement: "top-end",
-    });
-    resetForm();
+  const { waitingListHandler, isLoading } = useDigitalProduct();
+
+  const handleSubmit = async (values, { resetForm, setSubmitting }) => {
+    try {
+      const res = await waitingListHandler({ email: values.contact });
+      
+      if(res?.status === true){
+        toaster.create({
+          title: "Success!",
+          description: res?.message || "You've joined the waiting list successfully.",
+          type: "success",
+          duration: 3000,
+          placement: "top-end",
+        });
+      }else{
+        toaster.create({
+          title: "InFormation!",
+          description: res?.message || "failed to join the waiting list.",
+          type: "error",
+          duration: 3000,
+          placement: "top-end",
+        });
+      }
+
+      resetForm();
+    } catch (error) {
+      const errorMessage =
+        error?.response?.data?.message ||
+        "Something went wrong. Please try again.";
+
+      toaster.create({
+        title: "Error!",
+        description: errorMessage,
+        type: "error",
+        duration: 3000,
+        placement: "top-end",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
+
+
 
   return (
     <Box
@@ -126,10 +159,10 @@ const WaitingList = () => {
                 rounded="full"
                 fontWeight="600"
                 _hover={{ bg: "brand.btnHoverColor" }}
-                isLoading={isSubmitting}
+                isLoading={isLoading} 
                 alignSelf={["center", "center", "flex-start"]}
               >
-                Join Now
+                { isLoading ? "Joining..." : "Join Now"}
               </Button>
             </Flex>
           </Form>

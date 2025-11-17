@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import useEmblaCarousel from 'embla-carousel-react';
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 import {
   Box,
   Button,
@@ -7,23 +7,25 @@ import {
   Image,
   Text,
   useBreakpointValue,
-} from '@chakra-ui/react';
-import { motion } from 'framer-motion';
-import Header from './Header';
-import bgImage from '../assets/images/bg4.png';
+} from "@chakra-ui/react";
+import { motion } from "framer-motion";
+import Header from "./Header";
+import bgImage from "../assets/images/bg4.png";
 import heroimage1 from "../assets/images/Phone1.png";
 import heroimage2 from "../assets/images/Phone2.png";
 import heroimage3 from "../assets/images/Phone3.png";
 import heroimage4 from "../assets/images/Phone4.png";
+import { useNavigate } from "react-router-dom";
 
 const MotionImage = motion(Image);
 
 const HeroPage = () => {
+  const navigate = useNavigate();
   const slidesPerView = useBreakpointValue({ base: 1, md: 1, lg: 1 });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
-    align: 'start',
+    align: "start",
     skipSnaps: false,
   });
 
@@ -76,15 +78,18 @@ const HeroPage = () => {
     if (!emblaApi) return;
 
     const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
-    emblaApi.on('select', onSelect);
+    emblaApi.on("select", onSelect);
     onSelect();
   }, [emblaApi]);
 
-  const scrollTo = useCallback((index) => emblaApi?.scrollTo(index), [emblaApi]);
+  const scrollTo = useCallback(
+    (index) => emblaApi?.scrollTo(index),
+    [emblaApi]
+  );
 
   return (
     <Box
-      pt={['80px', '90px', '100px']}
+      pt={["80px", "90px", "100px"]}
       bgRepeat="no-repeat"
       bgImage={`linear-gradient(
         rgba(11, 37, 69, 0.75),
@@ -92,7 +97,7 @@ const HeroPage = () => {
       ), url(${bgImage})`}
       bgSize="cover"
       bgPosition="center"
-      px={['15px', '20px', '30px', '40px']}
+      px={["15px", "20px", "30px", "40px"]}
       position="relative"
       overflow="hidden"
       onMouseEnter={() => (isHoveringRef.current = true)}
@@ -108,7 +113,7 @@ const HeroPage = () => {
               key={content.id}
               flex={`0 0 ${100 / (slidesPerView || 1)}%`}
               minW={`${100 / (slidesPerView || 1)}%`}
-              flexDirection={['column', 'column', 'row']}
+              flexDirection={["column", "column", "row"]}
               justifyContent="space-between"
               alignItems="center"
               height="100%"
@@ -123,33 +128,33 @@ const HeroPage = () => {
                 px={[4, 6, 8]}
                 justify="space-between"
                 align="center"
-                flexDir={['column', 'column', 'row']}
+                flexDir={["column", "column", "row"]}
                 gap={[3, 0, 0]}
               >
                 {/* Left Text Section */}
                 <Flex
                   flexDirection="column"
-                  justifyContent={['center', 'center', 'flex-start']}
-                  alignItems={['center', 'center', 'flex-start']}
+                  justifyContent={["center", "center", "flex-start"]}
+                  alignItems={["center", "center", "flex-start"]}
                   gap={5}
-                  width={['100%', '100%', '52%']}
-                  textAlign={['center', 'center', 'left']}
+                  width={["100%", "100%", "52%"]}
+                  textAlign={["center", "center", "left"]}
                   color="brand.whiteColor"
                 >
                   <Text
                     fontWeight="700"
-                    fontSize={['22px', '24px', '28px', '32px']}
+                    fontSize={["22px", "24px", "28px", "32px"]}
                   >
-                    {content.heading.split(" ").slice(0, 3).join(" ")}{' '}
+                    {content.heading.split(" ").slice(0, 3).join(" ")}{" "}
                     <Box as="span" color="brand.btnBgColor">
                       {content.heading.split(" ").slice(3, 4).join(" ")}
-                    </Box>{' '}
+                    </Box>{" "}
                     {content.heading.split(" ").slice(4).join(" ")}
                   </Text>
 
                   <Text
                     fontWeight="400"
-                    fontSize={['16px', '18px', '16px', '18px']}
+                    fontSize={["16px", "18px", "16px", "18px"]}
                     maxW={["100%", "500px", "600px"]}
                     py={[2, 3, 4]}
                   >
@@ -158,12 +163,13 @@ const HeroPage = () => {
 
                   {/* Desktop button */}
                   <Button
-                    display={['none', 'none', 'flex']}
+                    display={["none", "none", "flex"]}
                     width="200px"
                     bgColor="brand.btnBgColor"
                     color="brand.textColor"
                     size="lg"
-                    fontWeight="500"
+                    fontWeight={"500"}
+                    onClick={() => navigate("/onboarding")}
                   >
                     Start my application
                   </Button>
@@ -171,16 +177,16 @@ const HeroPage = () => {
 
                 {/* Right Image Section */}
                 <Flex
-                  justifyContent={['center', 'center', 'flex-end']}
+                  justifyContent={["center", "center", "flex-end"]}
                   alignItems="center"
-                  width={['100%', '100%', '48%']}
-                  mt={['30px', '30px', '0']}
+                  width={["100%", "100%", "48%"]}
+                  mt={["30px", "30px", "0"]}
                   flexDir="column"
                 >
                   <MotionImage
                     src={content.image}
                     alt="Hero Image"
-                    w={['250px', '300px', '400px', '450px']}
+                    w={["250px", "300px", "400px", "450px"]}
                     h="auto"
                     fit="contain"
                     mx="auto"
@@ -192,28 +198,31 @@ const HeroPage = () => {
                       scale: [1, 1.03, 1],
                     }}
                     transition={{
-                      opacity: { duration: 0.8, ease: 'easeInOut' },
-                      y: { duration: 3, repeat: Infinity, ease: 'easeInOut' },
-                      scale: { duration: 4, repeat: Infinity, ease: 'easeInOut' },
+                      opacity: { duration: 0.8, ease: "easeInOut" },
+                      y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+                      scale: {
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      },
                     }}
-
                   />
 
                   {/* Mobile button below image */}
                   <Button
-                    display={['flex', 'flex', 'none']}
+                    display={["flex", "flex", "none"]}
                     width="200px"
                     bgColor="brand.btnBgColor"
                     color="brand.textColor"
                     size="lg"
                     fontWeight="500"
                     mt={8}
+                    onClick={() => navigate("/onboarding")}
                   >
                     Start my application
                   </Button>
                 </Flex>
               </Flex>
-
             </Flex>
           ))}
         </Flex>
@@ -235,9 +244,11 @@ const HeroPage = () => {
             p={0}
             minW="unset"
             borderRadius="full"
-            bg={selectedIndex === index ? 'brand.textColor' : 'brand.btnBgColor'}
+            bg={
+              selectedIndex === index ? "brand.textColor" : "brand.btnBgColor"
+            }
             onClick={() => scrollTo(index)}
-            _hover={{ bg: 'brand.lightBlueColor' }}
+            _hover={{ bg: "brand.lightBlueColor" }}
           />
         ))}
       </Flex>

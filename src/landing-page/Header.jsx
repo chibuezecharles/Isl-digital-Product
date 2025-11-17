@@ -1,7 +1,7 @@
-import React from 'react'
-import { Box, Flex, Image, Text } from '@chakra-ui/react'
-import logo from '../assets/images/isl-logo.png'
-import MobileNavBar from './MobileNavBar'
+import React from "react";
+import { Box, Flex, Text, Image } from "@chakra-ui/react";
+import logo from "../assets/images/isl-logo.png";
+import MobileNavBar from "./MobileNavBar";
 
 const Header = () => {
   const scrollToSection = (id) => {
@@ -15,24 +15,24 @@ const Header = () => {
     <Flex
       // py={3}
       px={3}
-      justifyContent='space-between'
-      alignItems='center'
+      justifyContent="space-between"
+      alignItems="center"
       position="fixed"
       top={0}
       left={0}
       right={0}
       bg="brand.lightBlueColor"
       backdropFilter="blur(6px)"
-      zIndex={1000}
+      zIndex={2}
       boxShadow="sm"
       w="100%"
       maxW="100vw"
       overflowX="hidden"
     >
-      <Box 
-        onClick={() => scrollToSection('home')} 
-        cursor="pointer" 
-        display="flex" 
+      <Box
+        onClick={() => scrollToSection("home")}
+        cursor="pointer"
+        display="flex"
         alignItems="center"
       >
         <Image
@@ -54,16 +54,28 @@ const Header = () => {
         display={["none", "none", "flex"]}
         pr={8}
       >
-        <Text _hover={{ color: "brand.btnBgColor" }} onClick={() => scrollToSection('home')}>
+        <Text
+          _hover={{ color: "brand.btnBgColor" }}
+          onClick={() => scrollToSection("home")}
+        >
           Home
         </Text>
-        <Text _hover={{ color: "brand.btnBgColor" }} onClick={() => scrollToSection('process')}>
+        <Text
+          _hover={{ color: "brand.btnBgColor" }}
+          onClick={() => scrollToSection("process")}
+        >
           Our Process
         </Text>
-        <Text _hover={{ color: "brand.btnBgColor" }} onClick={() => scrollToSection('advantage')}>
+        <Text
+          _hover={{ color: "brand.btnBgColor" }}
+          onClick={() => scrollToSection("advantage")}
+        >
           Unique Advantage
         </Text>
-        <Text _hover={{ color: "brand.btnBgColor" }} onClick={() => scrollToSection('testimonials')}>
+        <Text
+          _hover={{ color: "brand.btnBgColor" }}
+          onClick={() => scrollToSection("testimonials")}
+        >
           Testimonials
         </Text>
       </Flex>
@@ -73,6 +85,6 @@ const Header = () => {
       </Box>
     </Flex>
   );
-}
+};
 
 export default Header;

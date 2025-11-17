@@ -26,7 +26,7 @@ const MobileNavBar = ({ scrollToSection }) => {
 
   const handleClick = (id) => {
     scrollToSection(id);
-    setOpen(false); 
+    setOpen(false);
   };
 
   return (
@@ -92,7 +92,10 @@ const MobileNavBar = ({ scrollToSection }) => {
                   {label}
                 </Text>
               ))}
-              <Separator borderBottomWidth="1px" borderColor="brand.btnBgColor" />
+              <Separator
+                borderBottomWidth="1px"
+                borderColor="brand.btnBgColor"
+              />
             </Flex>
           </Drawer.Content>
         </Drawer.Positioner>

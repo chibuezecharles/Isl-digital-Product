@@ -13,12 +13,7 @@ import {
   chakra,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import {
-  FileIcon,
-  SmartphoneIcon,
-  CheckIcon,
-  TruckIcon,
-} from "lucide-react";
+import { FileIcon, SmartphoneIcon, CheckIcon, TruckIcon } from "lucide-react";
 import phoneImage from "../assets/images/uniqueAdvantage1.png";
 
 // motion wrappers for Chakra v3
@@ -90,8 +85,8 @@ const HowItWorks = () => {
           textAlign="center"
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 2, ease: "easeInOut" }} 
-          viewport={{ once: false, amount: 0.3 }} 
+          transition={{ duration: 2, ease: "easeInOut" }}
+          viewport={{ once: false, amount: 0.3 }}
         >
           <Image
             src={phoneImage}
@@ -102,7 +97,6 @@ const HowItWorks = () => {
           />
         </MotionBox>
 
-
         {/* Animate steps from right */}
         <MotionVStack
           align="flex-start"
@@ -110,10 +104,9 @@ const HowItWorks = () => {
           maxW="500px"
           initial={{ opacity: 0, x: 100 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.8, ease: "easeInOut", delay: 0.2 }} 
+          transition={{ duration: 1.8, ease: "easeInOut", delay: 0.2 }}
           viewport={{ once: false, amount: 0.3 }}
         >
-
           {steps.map((step, index) => (
             <Box key={step.id} w="full">
               <Flex gap={4}>
